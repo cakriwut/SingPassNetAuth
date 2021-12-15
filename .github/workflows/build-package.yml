@@ -33,14 +33,12 @@ jobs:
         dotnet-version: 3.1.*
       #if: matrix.framework == 'netcoreapp3.1'    
       
-    - name: Restore dependencies
+    - name: Restore dependencies and build
       run: |
         cd src/SingPassAuthentication
         dotnet clean SingPassAuthentication.sln
         dotnet nuget locals all --clear
-      
-    - name: Build
-      run: |
-        cd src/SingPassAuthentication
         dotnet build --no-restore
+      
+        
 
