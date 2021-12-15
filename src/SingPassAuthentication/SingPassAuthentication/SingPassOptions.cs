@@ -55,9 +55,9 @@ namespace SingPassAuthentication
             {
                 var singpassIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier);
 
-                var singpass = singpassIdentifier.Value.Split(",");
-                var nric = singpass[0].Split("=")[1];
-                var uid = singpass[1].Split("=")[1];
+                var singpass = singpassIdentifier.Value.Split(',');
+                var nric = singpass[0].Split('=')[1];
+                var uid = singpass[1].Split('=')[1];
                 identity.RemoveClaim(singpassIdentifier);
 
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, uid, ClaimValueTypes.String, "SingPass"));

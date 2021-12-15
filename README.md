@@ -44,8 +44,8 @@ The SingPass .NET Authentication project is an open-source and cross-platfrom im
 
 ## Target Frameworks
 - .NET Standard 2.0
-- .NET Framework 4.6.1
 - .NET Core 3.1 
+- .NET 5.0
 
 ## Platforms
 - Windows
