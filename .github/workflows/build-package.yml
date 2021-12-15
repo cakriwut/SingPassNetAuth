@@ -35,6 +35,7 @@ jobs:
       
     - name: Restore dependencies
       run: |
+        cd src/SingPassAuthentication
         dotnet clean SingPassAuthentication.sln
         dotnet nuget locals all --clear
       
