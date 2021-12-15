@@ -24,13 +24,13 @@ jobs:
     - name: Setup .NET 2.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.1.001
+        dotnet-version: 2.1.*
       #if: matrix.framework == 'netcoreapp2.1'
       
     - name: Setup .NET 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.300
+        dotnet-version: 3.1.*
       #if: matrix.framework == 'netcoreapp3.1'    
       
     - name: Restore dependencies
