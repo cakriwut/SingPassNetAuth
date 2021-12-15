@@ -41,7 +41,7 @@ jobs:
     - name: Create Nuget Package
       run: |
         cd ./src/SingPassAuthentication
-        dotnet pack -v normal -c Release --include-symbols --include-source -o nupkg src/SingPassAuthentication/SingPassAuthentication.*proj
+        dotnet pack -v normal -c Release --include-symbols --include-source -o nupkg ./SingPassAuthentication/SingPassAuthentication.csproj 
     - name: Upload Package 
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v2
