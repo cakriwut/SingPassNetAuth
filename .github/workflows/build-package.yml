@@ -47,5 +47,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: nupkg
-        path: ./src/SingPassAuthentication/SingPassAuthentication/bin/Release/*.nupkg
+        path: ./src/SingPassAuthentication/nupkg/*.nupkg
        
