@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>SingPassAuth</PackageId>
+    <Description>SingPass OpenID Connect authentication for ASP.NET Core</Description>
+    <Authors>Riwut Libinuko</Authors>
+    <AssemblyName>SingPassAuthentication</AssemblyName>
+    <PackageTags>OpenID Connect;Oidc;Security;Identity;SingPass;NDI;IdentityServer</PackageTags>
+    <PackageProjectUrl>https://github.com/cakriwut/SingPassNetAuth</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>https://github.com/cakriwut/SingPassNetAuth/releases</PackageReleaseNotes>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>false</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="5.2.0" />
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="6.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.22" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.15.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
+  </ItemGroup>
+</Project>
