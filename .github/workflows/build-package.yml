@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ windows-latest, ubuntu-latest]
-        framework: [ 'netcoreapp3.1', 'netcoreapp2.1']
+    #  framework: [ 'netcoreapp3.1', 'netcoreapp2.1']
 
     steps:
     - name: Check out code from repository
