@@ -23,15 +23,20 @@ jobs:
 
     - name: Cleanup Package Cache
       run: |
-        cd src/SingPassAuthentication
+        cd ./src/SingPassAuthentication
         dotnet clean SingPassAuthentication.sln
         dotnet nuget locals all --clear
 
     - name: Build and Package
       run: |
-        cd src/SingPassAuthentication
+        cd ./src/SingPassAuthentication
         dotnet restore
         dotnet build --no-restore      
 
-        
-
+    - name: Upload Package 
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: nupkg
+        path: ./src/SingPassAuthentication/SingPassAuthentication/bin/Release/*.nupkg
+       
