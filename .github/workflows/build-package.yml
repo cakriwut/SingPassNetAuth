@@ -21,29 +21,17 @@ jobs:
     - name: Check out code from repository
       uses: actions/checkout@v2
 
-    - name: Check
+    - name: Cleanup Package Cache
       run: |
-        dotnet --version
-        dotnet --info
-      
-    # - name: Setup .NET 2.1
-    #   uses: actions/setup-dotnet@v1
-    #   with:
-    #     dotnet-version: 2.1.*
-    #   #if: matrix.framework == 'netcoreapp2.1'
-      
-    # - name: Setup .NET 3.1
-    #   uses: actions/setup-dotnet@v1
-    #   with:
-    #     dotnet-version: 3.1.*
-    #   #if: matrix.framework == 'netcoreapp3.1'    
-      
-    # - name: Restore dependencies and build
-    #   run: |
-    #     cd src/SingPassAuthentication
-    #     dotnet clean SingPassAuthentication.sln
-    #     dotnet nuget locals all --clear
-    #     dotnet build --no-restore
-      
+        cd src/SingPassAuthentication
+        dotnet clean SingPassAuthentication.sln
+        dotnet nuget locals all --clear
+
+    - name: Build and Package
+      run: |
+        cd src/SingPassAuthentication
+        dotnet restore
+        dotnet build --no-restore      
+
         
 
