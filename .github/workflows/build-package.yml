@@ -40,5 +40,7 @@ jobs:
         dotnet nuget locals all --clear
       
     - name: Build
-      run: dotnet build --no-restore
+      run: |
+        cd src/SingPassAuthentication
+        dotnet build --no-restore
 
