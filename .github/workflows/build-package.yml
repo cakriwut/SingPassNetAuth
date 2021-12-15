@@ -1,0 +1,43 @@
+name: BuildAndPackage
+
+on:
+  push:
+  pull_request:
+    branches: 
+    - main
+
+jobs:
+  build-and-package:
+    name: Build and Package
+    
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest]
+        framework: [ 'netcoreapp3.1', 'netcoreapp2.1']
+
+    steps:
+    - name: Check out code from repository
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET 2.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.1.001
+      #if: matrix.framework == 'netcoreapp2.1'
+      
+    - name: Setup .NET 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.300
+      #if: matrix.framework == 'netcoreapp3.1'    
+      
+    - name: Restore dependencies
+      run: |
+        dotnet clean SingPassAuthentication.sln
+        dotnet nuget locals all --clear
+      
+    - name: Build
+      run: dotnet build --no-restore
+
