@@ -4,6 +4,7 @@
     <LangVersion>preview</LangVersion>
     <TargetFrameworks>netcoreapp3.1;net5.0;netstandard2.0</TargetFrameworks>    
     <PackageId>SingPassAuth</PackageId>
+    <Title>SingPass OIDC Authentication for .NET</Title>
     <Description>SingPass OpenID Connect authentication for ASP.NET Core</Description>
     <Authors>Riwut Libinuko</Authors>
     <Owners>Riwut Libinuko</Owners>
@@ -22,7 +23,7 @@
     <DebugType>portable</DebugType>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -47,5 +48,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="../../Readme.md" pack="true" PackagePath="." />
+  </ItemGroup>
   
 </Project>
