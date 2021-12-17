@@ -6,6 +6,7 @@
     <PackageId>SingPassAuth</PackageId>
     <Description>SingPass OpenID Connect authentication for ASP.NET Core</Description>
     <Authors>Riwut Libinuko</Authors>
+    <Owners>Riwut Libinuko</Owners>
     <Copyright>Copyright (c) Riwut Libinuko 2021</Copyright>
     <AssemblyName>SingPassAuthentication</AssemblyName>
     <PackageTags>OpenID Connect;Oidc;Security;Identity;SingPass;NDI;IdentityServer</PackageTags>
@@ -46,11 +47,5 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="./../../README.md">
-      <Pack>true</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
   
 </Project>
