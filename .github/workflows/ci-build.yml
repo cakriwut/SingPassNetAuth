@@ -1,0 +1,39 @@
+name: CI Build
+
+on:
+  push:
+    branches:
+    - '**'
+
+env:
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build:        
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macOS-latest]
+
+    steps:
+    - name: Check out code from repository
+      uses: actions/checkout@v2
+
+    - name: Restore dependencies
+      run:  dotnet restore ./src/SingPassAuthentication.sln
+
+    - name: Build
+      run:  |
+        dotnet build --no-restore -c Release ./src/SingPassAuthentication/SingPassAuthentication.csproj
+        dotnet pack -v normal -c Release ./src/SingPassAuthentication/SingPassAuthentication.csproj 
+ 
+    - name: Publish Package to Github
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: Packages
+        path: ./src/SingPassAuthentication/bin/Release/*.nupkg
+       

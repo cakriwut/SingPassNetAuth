@@ -1,0 +1,54 @@
+name: Release Build
+
+on:  
+  push:
+    tags: 
+    - "v*"    
+
+env:
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  pre-release:
+    if: github.event.base_ref == 'refs/heads/main'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macOS-latest]    
+
+    steps:
+    - name: Check out code from repository
+      uses: actions/checkout@v2
+
+    - name: Restore dependencies
+      run:  dotnet restore ./src/SingPassAuthentication.sln
+
+    - name: Build
+      run:  |
+        dotnet build --no-restore -c Release ./src/SingPassAuthentication/SingPassAuthentication.csproj
+        dotnet pack -v normal -c Release ./src/SingPassAuthentication/SingPassAuthentication.csproj         
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      if: matrix.os == 'ubuntu-latest' 
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"        
+        prerelease: false
+        title: "Pre-release Build"
+        files: |
+          ./src/SingPassAuthentication/bin/Release/*.nupkg
+          README.md 
+
+    - name: Publish Package to Github
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: Packages
+        path: ./src/SingPassAuthentication/bin/Release/*.nupkg
+
+    - name: Publish Package to Nuget
+      if: matrix.os == 'ubuntu-latest' 
+      run: |
+        dotnet nuget push **\*.nupkg --api-key ${{secrets.NUGETSECRET}} --source https://api.nuget.org/v3/index.json        
