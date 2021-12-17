@@ -28,7 +28,7 @@ jobs:
     - name: Build
       run:  |
         dotnet build --no-restore -c Release ./src/SingPassAuthentication/SingPassAuthentication.csproj
-        dotnet pack -v normal -c Release -o nupkg ./src/SingPassAuthentication/SingPassAuthentication.csproj 
+        dotnet pack -v normal -c Release ./src/SingPassAuthentication/SingPassAuthentication.csproj 
  
     - name: Publish Package to Github
       if: matrix.os == 'ubuntu-latest'
