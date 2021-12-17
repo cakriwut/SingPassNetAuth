@@ -12,7 +12,7 @@ env:
 
 jobs:
   pre-release:
-    if: github.event.base_ref == 'refs/heads/main'
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
