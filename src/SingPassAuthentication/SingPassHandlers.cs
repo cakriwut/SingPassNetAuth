@@ -15,7 +15,7 @@ namespace SingPassAuthentication
         private readonly SingpassService _assertionService;
         private readonly SingPassOptions _configuration;
         private readonly IMemoryCache _memoryCache;
-        private IDistributedCache _distributedCache;
+        private readonly IDistributedCache _distributedCache;
 
         public SingPassHandlers(SingpassService assertionService, SingPassOptions configuration, IMemoryCache memoryCache = null, IDistributedCache distributdCache = null)
         {

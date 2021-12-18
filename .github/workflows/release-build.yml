@@ -35,7 +35,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"        
         prerelease: false
-        title: "Pre-release Build"
+        title: "Release Build"
         files: |
           ./src/SingPassAuthentication/bin/Release/*.nupkg
           README.md 
