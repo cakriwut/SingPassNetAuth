@@ -10,10 +10,25 @@ namespace SingPassAuthentication
     public static class SingPassExtensions
     {
         public static AuthenticationBuilder AddSingPass(this AuthenticationBuilder builder,
-            string authenticationScheme, string displayName, Action<SingPassOptions> configurationOptions = null)
+            Action<SingPassOptions> configurationOptions)
+        {
+            return builder.AddSingPass("SingPass", "SingPass Login", configurationOptions);
+        }
+
+        public static AuthenticationBuilder AddSingPass(this AuthenticationBuilder builder,
+           string displayName, Action<SingPassOptions> configurationOptions)
+        {
+            return builder.AddSingPass("SingPass", displayName, configurationOptions);
+        }
+
+        public static AuthenticationBuilder AddSingPass(this AuthenticationBuilder builder,
+        string authenticationScheme, string displayName, Action<SingPassOptions> configurationOptions)
         {
             var singpassOptions = new SingPassOptions();
             if (configurationOptions != null) configurationOptions(singpassOptions);
+
+            if (string.IsNullOrEmpty(singpassOptions.ClientId) || string.IsNullOrEmpty(singpassOptions.Authority))
+                throw new ArgumentNullException("configurationOptions", "Missing ClientId or Authority");
 
             builder.AddOpenIdConnect(authenticationScheme, displayName, options =>
             {
